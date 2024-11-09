@@ -76,6 +76,6 @@ The **Random Forest Classifier** demonstrated superior performance compared to t
 
 #### **7. GitHub Repository**
 You can access the full code, dataset, and additional resources on my GitHub repository:  
-[https://github.com/abirhasankhan/Learning-Machine-Learning/tree/main/Assignment%201](#)
+[https://github.com/abirhasankhan/Learning-Machine-Learning/tree/main/Assignment%201](https://github.com/abirhasankhan/Learning-Machine-Learning/tree/main/Assignment%201)
 
 ---
