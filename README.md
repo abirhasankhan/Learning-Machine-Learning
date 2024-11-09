@@ -58,7 +58,7 @@ We trained a **Random Forest Classifier**, which is an ensemble model consisting
 
 The **Random Forest** classifier significantly outperformed the Decision Tree in terms of accuracy and other classification metrics. It showed strong performance across almost all categories, particularly **Cutting Weevil** and **Die Back**.
 
-### **5. Comparison of Decision Tree and Random Forest**
+#### **5. Comparison of Decision Tree and Random Forest**
 
 | Metric             | Decision Tree   | Random Forest   |
 |--------------------|-----------------|-----------------|
@@ -69,13 +69,13 @@ The **Random Forest** classifier significantly outperformed the Decision Tree in
 
 - **Random Forest** outperformed **Decision Tree** in terms of overall accuracy, precision, recall, and F1-score. The **Decision Tree** showed more variability across different disease categories.
 
-### **6. Conclusion**
+#### **6. Conclusion**
 The **Random Forest Classifier** demonstrated superior performance compared to the **Decision Tree Classifier**. The Random Forest model showed higher accuracy and more consistent performance across the various disease categories. This is attributed to its ensemble approach, which reduces overfitting and improves generalization.
 
 - **Future Work**: To further improve performance, exploring **Convolutional Neural Networks (CNNs)** for image-based classification could yield even better results, as CNNs are specialized for handling image data.
 
-### **7. GitHub Repository**
+#### **7. GitHub Repository**
 You can access the full code, dataset, and additional resources on my GitHub repository:  
-[GitHub Repository Link](#)
+[https://github.com/abirhasankhan/Learning-Machine-Learning/tree/main/Assignment%201](#)
 
 ---
