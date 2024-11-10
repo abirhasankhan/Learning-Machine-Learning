@@ -7,6 +7,7 @@ This project aimed to classify mango leaf diseases using two machine learning cl
 
 #### **2. Dataset Overview**
 The dataset contains images of mango leaves, categorized into several disease types. These categories include:
+
 [MangoLeafBD Dataset](https://data.mendeley.com/datasets/hxsnvwty3r/1)
 - **Cutting Weevil**
 - **Gall Midge**
