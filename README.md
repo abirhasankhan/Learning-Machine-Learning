@@ -111,5 +111,3 @@ Md. Abir Hasan Khan
 You can access the full code, dataset, and additional resources on my GitHub repository:  
 [Assignment 1](https://github.com/abirhasankhan/Learning-Machine-Learning/tree/main/Assignment%201)
 ```
-
-This updated `README.md` file reflects the new accuracy and detailed classification report for both models, providing more precise information about your project's results.
