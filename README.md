@@ -1,83 +1,115 @@
 # Learning-Machine-Learning
 ## Assignment 1
-### **Report on Mango Leaf Disease Classification Using Decision Tree and Random Forest**
 
-#### **1. Introduction**
-This project aimed to classify mango leaf diseases using two machine learning classifiers: **Decision Tree** and **Random Forest**. The dataset consists of images of mango leaves, each labeled with one of several disease categories. Our objective was to evaluate and compare the performance of these models on the classification task.
+# **Mango Leaf Disease Classification Using Decision Tree and Random Forest**
 
-#### **2. Dataset Overview**
-The dataset contains images of mango leaves, categorized into several disease types. These categories include:
+## Overview
+This project aims to classify various mango leaf diseases using machine learning techniques, specifically **Decision Tree** and **Random Forest** classifiers. The dataset consists of images of mango leaves, each labeled with a specific disease or healthy status. The goal is to build a model that can accurately identify the disease based on the leaf image.
 
-[MangoLeafBD Dataset](https://data.mendeley.com/datasets/hxsnvwty3r/1)
-- **Cutting Weevil**
-- **Gall Midge**
+## Dataset
+The dataset contains images of mango leaves with different diseases, including:
 - **Anthracnose**
 - **Bacterial Canker**
-- **Sooty Mould**
-- **Powdery Mildew**
+- **Cutting Weevil**
 - **Die Back**
+- **Gall Midge**
 - **Healthy**
+- **Powdery Mildew**
+- **Sooty Mould**
 
-Each image was resized to **128x128** pixels for consistency, and the images were flattened into 1D arrays for model training. The data was split into **80% training** and **20% testing**.
+The dataset was extracted from the [MangoLeafBD Dataset](https://data.mendeley.com/datasets/hxsnvwty3r/1). The images were resized to **128x128 pixels** and normalized for preprocessing. The data was split into **80% training** and **20% testing**.
 
-#### **3. Exploratory Data Analysis (EDA)**
-- **Data Loading**: We successfully loaded images and labels from the dataset and preprocessed the images to a consistent size.
-- **Data Preprocessing**: All images were resized to 128x128 pixels, flattened into 1D vectors, and normalized. The labels were encoded numerically for use in machine learning models.
-- **Data Split**: We split the dataset into training and testing sets, with 80% of the data used for training and 20% for testing.
+## Libraries Used
+This project uses the following libraries:
+- `matplotlib`: For data visualization.
+- `seaborn`: For enhanced data visualization.
+- `scikit-learn`: For machine learning algorithms and evaluation.
+- `opencv-python-headless`: For image processing.
+- `pandas`: For handling and processing data.
+- `numpy`: For numerical computations.
+- `joblib`: For saving and loading models.
 
-#### **4. Model Training and Evaluation**
+To install the necessary dependencies, run:
 
-##### **4.1 Decision Tree Classifier**
-We trained a **Decision Tree Classifier** using scikit-learn, which builds a tree-like structure to make decisions based on input features. After training the model, we evaluated it using accuracy and a detailed classification report.
+```bash
+pip install matplotlib seaborn scikit-learn opencv-python-headless pandas numpy joblib
+```
 
-**Decision Tree Performance**:
-- **Accuracy**: 69.63%
-- **Precision, Recall, and F1-Score**:
-  - **Anthracnose**: Precision: 0.69, Recall: 0.69, F1-Score: 0.69
-  - **Bacterial Canker**: Precision: 0.75, Recall: 0.81, F1-Score: 0.78
-  - **Cutting Weevil**: Precision: 0.89, Recall: 0.89, F1-Score: 0.89
-  - **Die Back**: Precision: 0.85, Recall: 0.77, F1-Score: 0.81
-  - **Gall Midge**: Precision: 0.52, Recall: 0.57, F1-Score: 0.54
-  - **Healthy**: Precision: 0.69, Recall: 0.66, F1-Score: 0.67
-  - **Powdery Mildew**: Precision: 0.56, Recall: 0.62, F1-Score: 0.59
-  - **Sooty Mould**: Precision: 0.58, Recall: 0.50, F1-Score: 0.54
+## Model Training and Evaluation
 
-The **Decision Tree** classifier performed well on certain classes like **Cutting Weevil**, but struggled with others, such as **Gall Midge** and **Sooty Mould**.
+### **Decision Tree Classifier**
+A **Decision Tree** was trained to classify the mango leaf diseases. The model showed varying performance across different disease categories.
 
-##### **4.2 Random Forest Classifier**
-We trained a **Random Forest Classifier**, which is an ensemble model consisting of multiple decision trees. The Random Forest method reduces overfitting by averaging the predictions from several trees, improving accuracy.
+- **Accuracy**: 59.38%
+- **Classification Report**:
 
-**Random Forest Performance**:
-- **Accuracy**: 88.63%
-- **Precision, Recall, and F1-Score**:
-  - **Anthracnose**: Precision: 0.92, Recall: 0.88, F1-Score: 0.89
-  - **Bacterial Canker**: Precision: 0.88, Recall: 0.90, F1-Score: 0.89
-  - **Cutting Weevil**: Precision: 0.98, Recall: 0.94, F1-Score: 0.96
-  - **Die Back**: Precision: 0.89, Recall: 0.93, F1-Score: 0.91
-  - **Healthy**: Precision: 0.89, Recall: 0.91, F1-Score: 0.90
-  - **Powdery Mildew**: Precision: 0.90, Recall: 0.88, F1-Score: 0.89
-  - **Sooty Mould**: Precision: 0.85, Recall: 0.87, F1-Score: 0.86
+| Class              | Precision | Recall | F1-Score | Support |
+|--------------------|-----------|--------|----------|---------|
+| **Anthracnose**     | 0.45      | 0.50   | 0.47     | 90      |
+| **Bacterial Canker**| 0.55      | 0.58   | 0.57     | 91      |
+| **Cutting Weevil**  | 0.92      | 0.91   | 0.92     | 93      |
+| **Die Back**        | 0.67      | 0.77   | 0.72     | 86      |
+| **Gall Midge**      | 0.47      | 0.48   | 0.48     | 104     |
+| **Healthy**         | 0.65      | 0.63   | 0.64     | 123     |
+| **Powdery Mildew**  | 0.47      | 0.44   | 0.45     | 101     |
+| **Sooty Mould**     | 0.57      | 0.49   | 0.53     | 112     |
+| **Accuracy**        |           |        | 0.59     | 800     |
+| **Macro avg**       | 0.60      | 0.60   | 0.60     | 800     |
+| **Weighted avg**    | 0.59      | 0.59   | 0.59     | 800     |
 
-The **Random Forest** classifier significantly outperformed the Decision Tree in terms of accuracy and other classification metrics. It showed strong performance across almost all categories, particularly **Cutting Weevil** and **Die Back**.
+### **Random Forest Classifier**
+The **Random Forest** model, an ensemble method consisting of multiple decision trees, performed significantly better, achieving higher accuracy and more consistent results across the disease categories.
 
-#### **5. Comparison of Decision Tree and Random Forest**
+- **Accuracy**: 82.38%
+- **Classification Report**:
+
+| Class              | Precision | Recall | F1-Score | Support |
+|--------------------|-----------|--------|----------|---------|
+| **Anthracnose**     | 0.70      | 0.81   | 0.75     | 90      |
+| **Bacterial Canker**| 0.76      | 0.84   | 0.80     | 91      |
+| **Cutting Weevil**  | 0.98      | 0.98   | 0.98     | 93      |
+| **Die Back**        | 0.93      | 0.88   | 0.90     | 86      |
+| **Gall Midge**      | 0.83      | 0.82   | 0.82     | 104     |
+| **Healthy**         | 0.84      | 0.81   | 0.83     | 123     |
+| **Powdery Mildew**  | 0.78      | 0.71   | 0.75     | 101     |
+| **Sooty Mould**     | 0.81      | 0.77   | 0.79     | 112     |
+| **Accuracy**        |           |        | 0.82     | 800     |
+| **Macro avg**       | 0.83      | 0.83   | 0.83     | 800     |
+| **Weighted avg**    | 0.83      | 0.82   | 0.82     | 800     |
+
+### **Comparison of Decision Tree and Random Forest**
 
 | Metric             | Decision Tree   | Random Forest   |
 |--------------------|-----------------|-----------------|
-| **Accuracy**       | 69.63%          | 88.63%          |
+| **Accuracy**       | 59.38%          | 82.38%          |
 | **Precision**      | Varies by class | Higher overall  |
 | **Recall**         | Varies by class | Higher overall  |
 | **F1-Score**       | Varies by class | Higher overall  |
 
-- **Random Forest** outperformed **Decision Tree** in terms of overall accuracy, precision, recall, and F1-score. The **Decision Tree** showed more variability across different disease categories.
+The **Random Forest** outperformed **Decision Tree** across all evaluation metrics, with higher accuracy and more consistent results.
 
-#### **6. Conclusion**
-The **Random Forest Classifier** demonstrated superior performance compared to the **Decision Tree Classifier**. The Random Forest model showed higher accuracy and more consistent performance across the various disease categories. This is attributed to its ensemble approach, which reduces overfitting and improves generalization.
+## Visualizations
+The following visualizations are included in the project:
+1. **Class Distribution**: A count plot of the class distribution of mango leaf diseases.
+2. **Sample Images**: A random sample of images from the dataset.
+3. **Confusion Matrices**: Visual representation of model predictions versus true labels.
+4. **Learning Curves**: A comparison of the learning curves for both the Decision Tree and Random Forest classifiers.
+5. **ROC Curve**: A receiver operating characteristic (ROC) curve for each class with AUC values.
 
-- **Future Work**: To further improve performance, exploring **Convolutional Neural Networks (CNNs)** for image-based classification could yield even better results, as CNNs are specialized for handling image data.
+## Future Work
+- **Model Optimization**: Hyperparameter tuning and feature engineering to improve model performance.
+- **Deep Learning**: Exploring deep learning models like Convolutional Neural Networks (CNNs) for potentially better results.
+- **Web Deployment**: Deploying the trained models to a web application where users can upload images of mango leaves and receive predictions in real-time.
 
-#### **7. GitHub Repository**
+## License
+This project is licensed under the MIT License.
+
+## Author
+Md. Abir Hasan Khan
+
+## GitHub Repository
 You can access the full code, dataset, and additional resources on my GitHub repository:  
 [Assignment 1](https://github.com/abirhasankhan/Learning-Machine-Learning/tree/main/Assignment%201)
+```
 
----
+This updated `README.md` file reflects the new accuracy and detailed classification report for both models, providing more precise information about your project's results.
