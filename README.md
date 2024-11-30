@@ -110,3 +110,172 @@ Md. Abir Hasan Khan
 ## GitHub Repository
 You can access the full code, dataset, and additional resources on my GitHub repository:  
 [Assignment 1](https://github.com/abirhasankhan/Learning-Machine-Learning/tree/main/Assignment%201)
+
+---
+## Assignment 2
+
+```markdown
+# Model Performance and Explainability on Classification Tasks
+
+This project implements multiple machine learning models to classify a dataset and evaluate their performance using various metrics. The models used include:
+
+- **Random Forest Classifier**
+- **Gradient Boosting Classifier**
+- **Stacking Classifier (Logistic Regression, Decision Tree, Random Forest)**
+- **Voting Classifiers (Hard and Soft Voting)**
+
+In addition to the classification models, the project includes model explainability tools such as **SHAP** and **LIME** for interpreting the results.
+
+## Dataset
+
+The dataset used in this project can be downloaded from Kaggle:
+
+- **Dataset Source:** [zeesolver/uhygtttt](https://www.kaggle.com/datasets/zeesolver/uhygtttt)
+- **Description:** The dataset contains features relevant for classification. The target variable is used for the classification task.
+
+## Setup Instructions
+
+### Prerequisites
+
+You need to have Python installed. Additionally, the following libraries are required:
+
+```bash
+pip install kagglehub shap lime scikit-learn pandas numpy matplotlib seaborn
+```
+
+### Data Loading
+
+This project uses the `kagglehub` library to download the dataset. You can access the dataset using the following code:
+
+```python
+import kagglehub
+path = kagglehub.dataset_download("zeesolver/uhygtttt")
+data = pd.read_csv(f"{path}/output.csv")
+```
+
+Make sure to update the dataset path if the actual dataset name differs.
+
+### Data Preprocessing
+
+The data preprocessing involves:
+- Handling missing values (rows with missing data are removed).
+- Encoding categorical features using `LabelEncoder`.
+- Splitting the data into features (`X`) and the target variable (`y`).
+
+### Train-Test Split
+
+The dataset is split into training and testing sets with 70% of the data used for training and 30% used for testing.
+
+```python
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+```
+
+### Model Training and Evaluation
+
+#### 1. **Random Forest Classifier**
+A Random Forest Classifier is trained and evaluated using accuracy, precision, recall, and F1 score.
+
+```python
+rf_model = RandomForestClassifier(random_state=42)
+rf_model.fit(X_train, y_train)
+rf_pred = rf_model.predict(X_test)
+```
+
+#### 2. **Gradient Boosting Classifier**
+Gradient Boosting is trained and evaluated similarly.
+
+```python
+gb_model = GradientBoostingClassifier(random_state=42)
+gb_model.fit(X_train, y_train)
+gb_pred = gb_model.predict(X_test)
+```
+
+#### 3. **Stacking Classifier**
+A Stacking Classifier combining Logistic Regression, Decision Tree, and Random Forest is trained.
+
+```python
+stacking_model = VotingClassifier(
+    estimators=[('lr', LogisticRegression(random_state=42)),
+                ('dt', DecisionTreeClassifier(random_state=42)),
+                ('rf', RandomForestClassifier(random_state=42))],
+    voting='soft'
+)
+```
+
+#### 4. **Voting Classifiers**
+Both hard and soft voting classifiers are trained using Random Forest, Gradient Boosting, and Decision Tree models.
+
+```python
+hard_voting = VotingClassifier(
+    estimators=[('rf', RandomForestClassifier(random_state=42)),
+                ('gb', GradientBoostingClassifier(random_state=42)),
+                ('dt', DecisionTreeClassifier(random_state=42))],
+    voting='hard'
+)
+```
+
+#### 5. **Model Evaluation**
+For each model, the following performance metrics are evaluated:
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- Confusion Matrix (visualized using a heatmap)
+
+#### Cross-Validation
+
+Cross-validation is performed to evaluate the models' generalization capability. For each model, cross-validation accuracy is calculated.
+
+```python
+from sklearn.model_selection import cross_val_score
+scores = cross_val_score(model, X, y, cv=5, scoring='accuracy')
+```
+
+### Model Explainability
+
+#### 1. **SHAP (Shapley Additive Explanations)**
+SHAP is used to explain the model’s predictions. It provides a summary plot to understand feature importance.
+
+```python
+import shap
+explainer = shap.TreeExplainer(rf_model)
+shap_values = explainer.shap_values(X_test)
+shap.summary_plot(shap_values[1], X_test, feature_names=X_test.columns)
+```
+
+#### 2. **LIME (Local Interpretable Model-Agnostic Explanations)**
+LIME is used to explain individual predictions by approximating the model locally.
+
+```python
+from lime.lime_tabular import LimeTabularExplainer
+lime_explainer = LimeTabularExplainer(X_train.values, feature_names=X_train.columns, class_names=['Class 0', 'Class 1'], mode='classification')
+lime_exp = lime_explainer.explain_instance(X_test.iloc[0].values, rf_model.predict_proba)
+lime_exp.show_in_notebook()
+```
+
+## Results and Visualizations
+
+After training and evaluation, the performance of each model is displayed in the form of a bar chart comparing the accuracy, precision, recall, and F1 score.
+
+Additionally, confusion matrices for each model are visualized to understand the true positives, false positives, true negatives, and false negatives.
+
+## Conclusion
+
+This project demonstrates the application of several popular ensemble learning methods (Random Forest, Gradient Boosting, Stacking, and Voting) for classification tasks. Model evaluation and explanation techniques (SHAP and LIME) are used to ensure interpretability and transparency.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- The dataset is provided by [zeesolver](https://www.kaggle.com/datasets/zeesolver/uhygtttt).
+- The machine learning models and evaluation metrics are implemented using [scikit-learn](https://scikit-learn.org/).
+
+```
+
+### Notes:
+1. **Dataset**: Ensure that the dataset link (`zeesolver/uhygtttt`) is correct and available on Kaggle.
+2. **Libraries**: If any additional libraries are needed (e.g., for visualization or other tasks), make sure to include them in the setup instructions.
+3. **Visualization**: The confusion matrix and performance comparison chart will help to compare models effectively.
